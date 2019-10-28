@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,16 +32,17 @@ public class GameController {
 		return service.displayAll();
 	}
 	
+
 	//SEARCH AND FILTER RESULTS
 	
 	
 	@GetMapping("/filterLowPrice")
-	public String filterLowPrice() {
+	public ArrayList<GamesWish> filterLowPrice() {
 		return service.filterLowPrice();
 	}
-	@GetMapping("/filterPlatform/{platform}")
-	public ArrayList<GamesWish> filterPlatform(@PathVariable String platform){
-		return service.filterPlatform(platform);
+	@GetMapping("/filterPlatform")
+	public ArrayList<GamesWish> filterPlatform(){
+		return service.filterPlatform();
 	}
 	@GetMapping("/filterTopPrice")
 	public ArrayList<GamesWish> filterTopPrice() {
@@ -73,9 +75,9 @@ public class GameController {
 	
 	//DELETE A RECORD
 	
-	@DeleteMapping("/deleteEntry")
-	public String DeleteEntry(@RequestBody GamesWish game){
-		 repo.delete(game);
+	@DeleteMapping("/deleteEntry/{id}")
+	public String DeleteEntry(@PathVariable Long id){
+		 repo.deleteById(id);
 		 return "Game removed from wishlist";
 	}
 	

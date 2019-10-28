@@ -24,12 +24,12 @@ import javax.persistence.Table;
 					query="Select p from GamesWish p order by p.releaseD desc"),
 		 
 		@NamedQuery(name="GamesWish.filterPlatform",
-					query="SELECT p from GamesWish p WHERE p.platform=?1 order by p.price desc"),
+					query="SELECT p from GamesWish p order by p.platform, p.price desc"),
 		
 		@NamedQuery(name="GamesWish.displayAll",
 					query="select p from GamesWish p order by p.grank"),
-//		@NamedQuery(name="GamesWish.deleteG",
-//					query="DELETE from GamesWish p WHERE p.game = p")
+		
+		
 		
 })
 @Table(name="gameswish")
@@ -57,7 +57,6 @@ public class GamesWish {
 	public Long getId() {
 		return id;
 	}
-
 
 
 	public void setId(Long id) {
