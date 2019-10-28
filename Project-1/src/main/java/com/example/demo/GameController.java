@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -72,9 +73,9 @@ public class GameController {
 	
 	//DELETE A RECORD
 	
-	@PutMapping("/DeleteEntry/{game}")
-	public String DeleteEntry(@PathVariable String game){
-		 repo.deleteById(game);
+	@DeleteMapping("/deleteEntry")
+	public String DeleteEntry(@RequestBody GamesWish game){
+		 repo.delete(game);
 		 return "Game removed from wishlist";
 	}
 	

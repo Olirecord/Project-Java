@@ -27,7 +27,9 @@ import javax.persistence.Table;
 					query="SELECT p from GamesWish p WHERE p.platform=?1 order by p.price desc"),
 		
 		@NamedQuery(name="GamesWish.displayAll",
-					query="select p from GamesWish p order by p.grank")
+					query="select p from GamesWish p order by p.grank"),
+//		@NamedQuery(name="GamesWish.deleteG",
+//					query="DELETE from GamesWish p WHERE p.game = p")
 		
 })
 @Table(name="gameswish")
@@ -35,6 +37,11 @@ import javax.persistence.Table;
 public class GamesWish {
 	
 	@Id 
+	 @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id",unique=true, nullable = false)
+	private Long id;
+	
 	
 	
 	private String game;
@@ -47,7 +54,15 @@ public class GamesWish {
 	
 	public GamesWish() {}
 	
-	
+	public Long getId() {
+		return id;
+	}
+
+
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getGame() {
 		return game;
