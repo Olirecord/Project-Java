@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.Controllers.Data.Data;
 
 @RestController
-@CrossOrigin
+@CrossOrigin("*")
 @RequestMapping("/gameapp")
 public class GameController {
 
