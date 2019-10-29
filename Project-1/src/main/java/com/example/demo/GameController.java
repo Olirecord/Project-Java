@@ -53,16 +53,7 @@ public class GameController {
 		return service.filterReleaseD();
 	}
 	
-	@GetMapping("/ShowAll")
-	public ArrayList<GamesWish> ShowAll(){
-		return repo.findAll();
-	}
-	
-	
-	@GetMapping("/FindGame/{game}")
-	public GamesWish FindGame(@PathVariable String game){
-		return repo.findBygame(game);
-	}
+
 	
 	
 	//BEGINNING OF add NEW game
@@ -84,26 +75,40 @@ public class GameController {
 	
 	//UPDATE EXISTING RECORDS
 	
-	@PutMapping("/UpdateRank/{game}/{newRank}")
-	public String UpdateRank(@PathVariable String game, @PathVariable int newRank) {
-		GamesWish g= repo.findBygame(game);
+	@PutMapping("/UpdateRank/{id}/{newRank}")
+	public String UpdateRank(@PathVariable Long id, @PathVariable int newRank) {
+		GamesWish g= repo.findByid(id);
 		g.setRank(newRank);
 		repo.save(g);
-		return "Game rank updated";
+		return "Rank updated";
 	}
-	@PutMapping("/UpdatePrice/{game}/{newPrice}")
-	public String UpdateRank(@PathVariable String game, @PathVariable float newPrice) {
-		GamesWish g= repo.findBygame(game);
+	@PutMapping("/UpdatePrice/{id}/{newPrice}")
+	public String UpdateRank(@PathVariable Long id, @PathVariable float newPrice) {
+		GamesWish g= repo.findByid(id);
 		g.setPrice(newPrice);
 		repo.save(g);
-		return "Game price updated";
+		return "Price updated";
 	}
-	@PutMapping("/UpdateDate/{game}/{newDate}")
-	public String UpdateRank(@PathVariable String game, @PathVariable Date newDate) {
-		GamesWish g= repo.findBygame(game);
+	@PutMapping("/UpdateDate/{id}/{newDate}")
+	public String UpdateRank(@PathVariable Long id, @PathVariable Date newDate) {
+		GamesWish g= repo.findByid(id);
 		g.setReleaseD(newDate);
 		repo.save(g);
 		return "Release date updated";
+	}
+	@PutMapping("/UpdateGame/{id}/{newGame}")
+	public String UpdateGame(@PathVariable Long id, @PathVariable String newGame) {
+		GamesWish g= repo.findByid(id);
+		g.setGame(newGame);
+		repo.save(g);
+		return "Game updated";
+	}
+	@PutMapping("/UpdatePlatform/{id}/{newPlat}")
+	public String UpdateRank(@PathVariable Long id, @PathVariable String newPlat) {
+		GamesWish g= repo.findByid(id);
+		g.setPlatform(newPlat);
+		repo.save(g);
+		return "Platform updated";
 	}
 	
 	

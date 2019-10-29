@@ -22,7 +22,7 @@ public interface GameRepo extends JpaRepository<GamesWish,String> {
 	public ArrayList<GamesWish> filterTopPrice();
 	public ArrayList<GamesWish> filterLowPrice();
 	
-	public GamesWish findBygame(String game);
+	public GamesWish findByid(Long id);
 	
 	public ArrayList<GamesWish> findAll(); 
 	

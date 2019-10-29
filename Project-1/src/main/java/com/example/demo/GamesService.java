@@ -28,8 +28,6 @@ public class GamesService {
 		return gr.displayAll();
 	}
 	
-	public void deleteG(String game){
-		gr.deleteG(game);
-	}
+	
 	
 }
